@@ -6,37 +6,45 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
 
+    //create gameobjects for player sprites and text on screen
     private static GameObject whoWinsText, player1MoveText, player2MoveText;
     private static GameObject player1, player2;
 
+    //create var for number rolled and what waypoint players are on
     public static int diceSideThrown = 0;
     public static int player1StartWaypoint = 0;
     public static int player2StartWaypoint = 0;
 
+    //bool to identify if game has been won
     public static bool gameOver = false;
     
     
     // Start is called before the first frame update
     void Start()
     {
+        //associate gameobjects with text gameobjects in unity
         whoWinsText = GameObject.Find("WhoWinsText");
         player1MoveText = GameObject.Find("Player1MoveText");
         player2MoveText = GameObject.Find("Player2MoveText");
         
+        //associate gameobjects with player sprites in unity
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
 
+        //neither player can go until die is rolled
         player1.GetComponent<FollowThePath>().moveAllowed = false;
         player2.GetComponent<FollowThePath>().moveAllowed = false;
         
+        //at start of game, it is player 1 turn, so should only see that player one can go
         whoWinsText.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
-        player2MoveText.gameObject.SetActive(true);
+        player2MoveText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //while both players 
         if (player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown)
         {
             player1.GetComponent<FollowThePath>().moveAllowed = false;

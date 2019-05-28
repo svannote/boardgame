@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class FollowThePath : MonoBehaviour
 {
-
+    //array to hold waypoints
     public Transform[] waypoints;
 
+    //var for speed, can change in unity
     [SerializeField] private float moveSpeed = 1f;
 
+    //var for waypoint player is at
     [HideInInspector] public int waypointIndex = 0;
 
+    //bool for if player can go
     public bool moveAllowed = false;
     
     // Start is called before the first frame update
