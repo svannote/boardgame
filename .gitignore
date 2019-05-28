@@ -36,3 +36,7 @@ sysinfo.txt
 *.unitypackage
 
 *.xml
+
+\.DS_Store
+
+Board Game/\.idea/\.idea\.Board Game/riderModule\.iml
