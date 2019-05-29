@@ -16,5 +16,9 @@ public class BuyButtonScript : MonoBehaviour
     public void Buy()
     {
         Property.bought = true;
+        if (RollDie.whosTurn == 1)
+        {
+            //Player1.player1Money -= ;
+        }
     }
 }
