@@ -10,7 +10,7 @@ public class RollDie : MonoBehaviour
     //renderer to display images
     private SpriteRenderer rend;
     //var to track who's turn (player1 or player2)
-    private int whosTurn = 1;
+    public static int whosTurn = 1;
     //bool to start/stop coroutine
     private bool coroutineAllowed = true;
     
@@ -26,6 +26,7 @@ public class RollDie : MonoBehaviour
     //when die clicked, if coroutine true and gameOver (from GameControl class) false, begin ienumerator to roll die
     private void OnMouseDown()
     {
+        GameControl.buyButton.gameObject.SetActive(false);
         if (!GameControl.gameOver && coroutineAllowed)
         {
             StartCoroutine("RollTheDice");

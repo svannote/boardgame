@@ -8,6 +8,7 @@ public class GameControl : MonoBehaviour
 
     //create gameobjects for player sprites and text on screen
     private static GameObject whoWinsText, player1MoveText, player2MoveText;
+    public static GameObject buyButton;
     private static GameObject player1, player2;
 
     //create var for number rolled and what waypoint players are on
@@ -26,6 +27,7 @@ public class GameControl : MonoBehaviour
         whoWinsText = GameObject.Find("WhoWinsText");
         player1MoveText = GameObject.Find("Player1MoveText");
         player2MoveText = GameObject.Find("Player2MoveText");
+        buyButton = GameObject.Find("BuyButton");
         
         //associate gameobjects with player sprites in unity
         player1 = GameObject.Find("Player1");
@@ -39,18 +41,22 @@ public class GameControl : MonoBehaviour
         whoWinsText.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
         player2MoveText.gameObject.SetActive(false);
+        buyButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         //while both players 
+        //if waypoint where player is at is greater than 
         if (player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown)
         {
             player1.GetComponent<FollowThePath>().moveAllowed = false;
             player1MoveText.gameObject.SetActive(false);
             player2MoveText.gameObject.SetActive(true);
             player1StartWaypoint = player1.GetComponent<FollowThePath>().waypointIndex - 1;
+            buyButton.gameObject.SetActive(true);
+            
         }
         
         if (player2.GetComponent<FollowThePath>().waypointIndex > player2StartWaypoint + diceSideThrown)
@@ -59,6 +65,7 @@ public class GameControl : MonoBehaviour
             player2MoveText.gameObject.SetActive(false);
             player1MoveText.gameObject.SetActive(true);
             player2StartWaypoint = player2.GetComponent<FollowThePath>().waypointIndex - 1;
+            buyButton.gameObject.SetActive(true);
         }
         
         if (player1.GetComponent<FollowThePath>().waypointIndex == player1.GetComponent<FollowThePath>().waypoints.Length)
